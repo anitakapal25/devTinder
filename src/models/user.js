@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -29,7 +28,11 @@ const userSchema = new mongoose.Schema({
         type: Number
     },
     gender: {
-        type: String
+        type: String,
+        enum: {
+            values:["male","female", "other"],
+            message: `{VALUE} is not valid gender type`
+        },
     },
     photoUrl: {
         type: String,
